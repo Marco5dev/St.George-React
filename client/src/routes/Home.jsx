@@ -17,7 +17,7 @@ function Home() {
   const [arr2021, setArr2021] = useState([]);
 
   useEffect(() => {
-    fetch("/api/arrFathers")
+    fetch("http://localhost:8080/api/arrFathers")
       .then((response) => response.json())
       .then((result) => {
         setArrFathers(result);
@@ -28,7 +28,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/arr2022")
+    fetch("http://localhost:8080/api/arr2022")
       .then((response) => response.json())
       .then((result) => {
         // Update the arr2022 state with the fetched data
@@ -40,7 +40,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/arr2021")
+    fetch("http://localhost:8080/api/arr2021")
       .then((response) => response.json())
       .then((result) => {
         // Update the arr2021 state with the fetched data
