@@ -1,42 +1,14 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function Header({ adminName, isPersistentLoggedIn }) {
-  const [darkMode, setDarkMode] = useState(true);
-
-  const handleDarkModeChange = () => {
-    setDarkMode(!darkMode);
-  };
-
-  useEffect(() => {
-    const themeStylesheet = document.getElementById("themeStylesheet");
-    const container = document.getElementById("top");
-
-    const toggleDarkMode = () => {
-      if (darkMode) {
-        container.classList.remove("light");
-        container.classList.add("dark");
-        themeStylesheet.href = "/css/dark.css";
-      } else {
-        container.classList.remove("dark");
-        container.classList.add("light");
-        themeStylesheet.href = "/css/light.css";
-      }
-      setDarkMode(!darkMode);
-    };
-
-    // Attach the toggleDarkMode function to the input's onChange
-    const darkModeInput = document.getElementById("color_mode2");
-    darkModeInput.addEventListener("change", toggleDarkMode);
-
-    return () => {
-      // Clean up the event listener when the component unmounts
-      darkModeInput.removeEventListener("change", toggleDarkMode);
-    };
-  }, [darkMode]);
-
+function Header({
+  darkMode,
+  onDarkModeChange,
+  adminName,
+  isPersistentLoggedIn,
+}) {
   const toggleProfileMenu = () => {
     var menuDiv = document.querySelector(".header .action .profile-menu");
     menuDiv.classList.toggle("active");
@@ -94,21 +66,20 @@ function Header({ adminName, isPersistentLoggedIn }) {
             </li>
 
             <li>
-            <div className="all">
-          <span className="navbar-link hover-1 dark-mode-text">
-            Toggle Dark Mode
-          </span>
-          <label className="dark-mode">
-            <input
-              type="checkbox"
-              className="dark-mode-input"
-              id="color_mode2"
-              checked={darkMode}
-              onChange={handleDarkModeChange}
-            />
-            <span className="dark-mode-slider"></span>
-          </label>
-        </div>
+              <div className="all">
+                <span className="navbar-link hover-1 dark-mode-text">
+                  Toggle Dark Mode
+                </span>
+                <label className="dark-mode">
+                  <input
+                    type="checkbox"
+                    className="dark-mode-input"
+                    checked={darkMode}
+                    onChange={onDarkModeChange}
+                  />
+                  <span className="dark-mode-slider"></span>
+                </label>
+              </div>
             </li>
 
             <li>
@@ -217,6 +188,8 @@ function Header({ adminName, isPersistentLoggedIn }) {
 
 // Add prop type validation
 Header.propTypes = {
+  darkMode: PropTypes.bool.isRequired,
+  onDarkModeChange: PropTypes.func.isRequired,
   adminName: PropTypes.string.isRequired, // Validate adminName as a required string
   isPersistentLoggedIn: PropTypes.bool.isRequired, // Validate isPersistentLoggedIn as a required boolean
 };
