@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
-import loading from "/img/Infinity-1s-200px.svg";
+import loading from "/images/Double Ring-1s-200px.svg";
 
 function Docs() {
   const [data, setData] = useState(null);
