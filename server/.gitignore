@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+.git
+.vscode
+./views/dashboard.html
+.replit
+/replit.nix
+
+Logs/
+logs/

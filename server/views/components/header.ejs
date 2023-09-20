@@ -1,0 +1,104 @@
+<header class="header" data-header>
+  <div class="container">
+    <a href="/#" class="logo">
+      <h1 class="logo">St.George</h1>
+    </a>
+
+    <nav class="navbar" data-navbar>
+      <div class="navbar-top">
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="navbar-list">
+        <li>
+          <a href="/" class="navbar-link hover-1" data-nav-toggler>Home</a>
+        </li>
+
+        <li>
+          <a href="/#recent-post" class="navbar-link hover-1" data-nav-toggler>Recent Posts</a>
+        </li>
+
+        <li>
+          <a href="/#years" class="navbar-link hover-1" data-nav-toggler>Years</a>
+        </li>
+
+        <li>
+          <a href="/data" class="navbar-link hover-1" data-nav-toggler>All Data</a>
+        </li>
+
+        <li>
+          <div class="all">
+            <span class="navbar-link hover-1 dark-mode-text">Toggle Dark Mode</span>
+            <label class="dark-mode">
+              <input type="checkbox" class="dark-mode-input" id="color_mode2" onclick="dark()" checked />
+              <span class="dark-mode-slider"></span>
+            </label>
+          </div>
+        </li>
+
+        <div class="dropdown">
+          <div class="select">
+            <span class="selected">Years</span>
+            <div class="caret"></div>
+          </div>
+          <ul class="menu">
+            <a href="/year/2018">
+              <li>2018</li>
+            </a>
+            <a href="/year/2019">
+              <li>2019</li>
+            </a>
+            <a href="/year/2020">
+              <li>2020</li>
+            </a>
+            <a href="/year/2021">
+              <li>2021</li>
+            </a>
+            <a href="/year/2022">
+              <li>2022</li>
+            </a>
+            <a href="/year/2023">
+              <li>2023</li>
+            </a>
+          </ul>
+        </div>
+
+        <div class="action" style="display: block;">
+          <div class="profile" onclick="profileToggle()">
+            <img src="/images/blank-photo.png" alt="user">
+          </div>
+<div class="profile-menu">
+    <h3><%- adminName %></h3>
+    <!-- Check if the user is logged in or not -->
+    <% if (!isPersistentLoggedIn) { %>
+      <ul class="login">
+        <li class="profile-li"><a href="/dash/login"><i class="fa-solid fa-toolbox"></i> Log in as admin</a></li>
+      </ul>
+    <% } else if (isPersistentLoggedIn === true) { %>
+      <!-- If the user is logged in as admin -->
+      <ul class="logedin">
+        <li class="profile-li"><a href="/dash/edit/user/<%- adminName %>"><i class="fa-regular fa-pen-to-square"></i> Edit profile</a></li>
+        <li class="profile-li"><a href="/dash"><i class="fa-solid fa-chart-simple"></i> Dashboard</a></li>
+        <li class="profile-li"><a href="/dash/add/user"><i class="fa-solid fa-plus"></i> Add New User</a></li>
+        <li class="profile-li"><a href="/dash/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+      </ul>
+    <% } %>
+  </div>
+        </div>
+    </nav>
+
+    <div class="theme-container">
+      <label class="switch btn-color-mode-switch">
+        <input type="checkbox" name="color_mode" id="color_mode" value="1" checked />
+        <label for="color_mode" data-on="Dark" data-off="Light" class="btn-color-mode-switch-inner"></label>
+      </label>
+    </div>
+
+    <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+      <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+    </button>
+
+  </div>
+</header>

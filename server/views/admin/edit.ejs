@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../components/head") %>
+
+  <body id="top" class="light">
+    <%- include("../components/header", { isPersistentLoggedIn: isPersistentLoggedIn, dashboardLoginPersistentValue: dashboardLoginPersistentValue }) %>
+
+
+    <main>
+      <article>
+        <section
+          class="section post post-phone"
+          aria-label="post"
+          id="recent-post"
+        >
+          <div class="container">
+            <h2 class="headline headline-2 section-title">
+              <span class="span">Edit <%= item.name %></span>
+            </h2>
+            <form
+              method="POST"
+              action="/dash/edit/<%- item.id %>"
+              enctype="multipart/form-data"
+            >
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value="<%- item.name %>"
+                  class="input-field"
+                  placeholder="Name:"
+                /><br />
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="social"
+                  name="social"
+                  value="<%- item.social %>"
+                  class="input-field"
+                  placeholder="Facebook link:"
+                /><br />
+              </div>
+
+              <label for="image" class="drop-container" id="dropcontainer">
+                <span class="drop-title">Drop image here</span>
+                or
+                <input
+                  type="file"
+                  id="image"
+                  value="<%- item.image %>"
+                  name="image"
+                  accept=".png, .jpg, .jpeg"
+                />
+              </label>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="rank"
+                  name="rank"
+                  value="<%- item.rank %>"
+                  class="input-field"
+                  placeholder="his/her Rank:"
+                /><br />
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="competition"
+                  value="<%- item.competition %>"
+                  name="competition"
+                  class="input-field"
+                  placeholder="Competition:"
+                /><br />
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  min="1900"
+                  max="2099"
+                  id="date"
+                  value="<%- item.date %>"
+                  name="date"
+                  class="input-field"
+                  placeholder="Date:"
+                /><br />
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="edu"
+                  value="<%- item.edu %>"
+                  name="edu"
+                  class="input-field"
+                  placeholder="Education:"
+                /><br />
+              </div>
+
+              <div>
+                <button class="btn btn-primary" type="submit">
+                  Edit Data
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div
+            class="container"
+            style="align-content: center; align-items: center"
+          >
+            <p class="headline headline-2 section-title">
+              <span class="span"></span>
+            </p>
+            <ul class="feature-list">
+              <li>
+                <div class="card feature-card">
+                  <figure
+                    class="card-banner img-holder"
+                    style="--width: 600; --height: 600"
+                  >
+                    <img
+                      src="<%- item.image || '/images/blank-photo.png' %>"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                      alt="<%- item.name %>"
+                      class="img-cover"
+                      onerror="replaceWithErrorImage(this)"
+                      class="image"
+                    />
+                  </figure>
+
+                  <div class="card-content">
+                    <div class="card-wrapper">
+                      <div class="card-tag">
+                        <p class="span hover-2 rank"><%- item.rank %></p>
+                      </div>
+                    </div>
+
+                    <h3 class="headline headline-3">
+                      <a
+                        href="<%- item.social %>"
+                        class="card-title hover-2 name"
+                        style="font-family: var(--fontFamily-noto_sans_arabic)"
+                      >
+                        <%- item.name %>
+                      </a>
+                    </h3>
+
+                    <div class="card-wrapper">
+                      <div class="profile-card">
+                        <div>
+                          <p class="card-title competition">
+                            <%- item.competition %>
+                          </p>
+
+                          <p class="card-subtitle edu"><%- item.edu %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <%- include("../components/footer") %>
+
+    <a
+      href="#top"
+      class="back-top-btn"
+      aria-label="back to top"
+      data-back-top-btn
+    >
+      <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+    </a>
+
+    <!-- Custom JavaScript -->
+    <%- include("../components/javascript") %>
+
+    <!-- Ion Icons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const nameInput = document.getElementById("name");
+        const nameLabel = document.querySelector(".name");
+        const eduInput = document.getElementById("edu");
+        const eduLabel = document.querySelector(".edu");
+        const competitionInput = document.getElementById("competition");
+        const competitionLabel = document.querySelector(".competition");
+        const rankInput = document.getElementById("rank");
+        const rankLabel = document.querySelector(".rank");
+        const imageInput = document.getElementById("image");
+        const imageLabel = document.querySelector(".image");
+
+        nameInput.addEventListener("input", function () {
+          nameLabel.textContent = nameInput.value;
+        });
+        eduInput.addEventListener("input", function () {
+          eduLabel.textContent = eduInput.value;
+        });
+        rankInput.addEventListener("input", function () {
+          rankLabel.textContent = rankInput.value;
+        });
+        competitionInput.addEventListener("input", function () {
+          competitionLabel.textContent = competitionInput.value;
+        });
+        imageInput.addEventListener("input", function () {
+          imageLabel.fileContent = imageInput.href;
+        });
+      });
+    </script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
