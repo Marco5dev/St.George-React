@@ -6,6 +6,12 @@ import Footer from "./../components/Footer.jsx";
 function Home() {
   document.title = "St.George | Home";
 
+  const [darkMode, setDarkMode] = useState(true);
+
+  const handleDarkModeChange = () => {
+    setDarkMode(!darkMode);
+  };
+
   const [arrFathers, setArrFathers] = useState([]);
   const [arr2022, setArr2022] = useState([]);
   const [arr2021, setArr2021] = useState([]);
@@ -58,8 +64,13 @@ function Home() {
 
   return (
     <>
-      <Header adminName="Marco" isPersistentLoggedIn={true} />
-      <main>
+      <Header
+        darkMode={darkMode}
+        onDarkModeChange={handleDarkModeChange}
+        adminName="Marco"
+        isPersistentLoggedIn={true}
+      />
+      <main className={`App ${darkMode ? "dark" : "light"}`}>
         <article>
           {/* 
             - #church
