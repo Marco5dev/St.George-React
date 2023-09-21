@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jsonverse = require("jsonverse");
+const path = require('path');
 const cookieParser = require("cookie-parser");
 
 const db = new jsonverse();
@@ -66,6 +67,16 @@ yearRoutes.forEach((route) => {
           .status(500)
           .json({ error: "Sorry something happened in the server" });
       });
+  });
+  // New route to serve images
+  router.get(`/image${route.year}/:imageName`, (req, res) => {
+    const imageName = req.params.imageName;
+
+    // Construct the full path to the image in the "uploads" folder
+    const imagePath = path.join(__dirname, "../uploads", imageName);
+
+    // Send the image file to the client
+    res.sendFile(imagePath);
   });
 });
 
