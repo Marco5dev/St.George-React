@@ -31,7 +31,11 @@ class Footer extends React.Component {
                   </li>
                 </ul>
               </div>
-              <div style="border-block-start: 1px solid var(--border-prussian-blue);"></div>
+              <div
+                style={{
+                  borderBlockStart: "1px solid var(--border-prussian-blue)",
+                }}
+              ></div>
               <div className="footer-bottom">
                 <p className="copyright">
                   &copy; Developed by
