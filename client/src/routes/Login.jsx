@@ -45,7 +45,7 @@ function Login() {
   };
 
   const handlePostRequest = () => {
-    fetch("http://localhost:8001/api/users", {
+    fetch("http://localhost:8080/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

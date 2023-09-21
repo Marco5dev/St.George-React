@@ -6,7 +6,7 @@ function Docs() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/users")
+    fetch("http://localhost:8080/api/users")
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData); // Add this line to check if data is received
