@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie"; // Import the useCookies hook
 
 function Header() {
   // Initialize cookies
-  const [cookies, setCookie] = useCookies(["adminName", "isLoggedIn"]);
+  const [cookies] = useCookies(["adminName", "isLoggedIn"]);
 
   // Retrieve values from cookies
   const adminName = cookies.adminName || "";
