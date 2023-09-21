@@ -6,7 +6,7 @@ import Header from "./../components/Header.jsx";
 import Footer from './../components/Footer.jsx';
 
 function Login() {
-  document.title = "All Youssef Travel || Log in or add new student";
+  document.title = "St.George | Sign in or Sign Up";
   const [inputsActive, setInputsActive] = useState({});
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [currentSliderIndex, setCurrentSliderIndex] = useState(1);
