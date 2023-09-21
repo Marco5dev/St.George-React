@@ -1,14 +1,16 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useCookies } from "react-cookie"; // Import the useCookies hook
 
-function Header({
-  darkMode,
-  onDarkModeChange,
-  adminName,
-  isPersistentLoggedIn,
-}) {
+function Header() {
+  // Initialize cookies
+  const [cookies, setCookie] = useCookies(["adminName", "isLoggedIn"]);
+
+  // Retrieve values from cookies
+  const adminName = cookies.adminName || "";
+  const isLoggedIn = cookies.isLoggedIn || false;
+
   const toggleProfileMenu = () => {
     var menuDiv = document.querySelector(".header .action .profile-menu");
     menuDiv.classList.toggle("active");
@@ -74,8 +76,9 @@ function Header({
                   <input
                     type="checkbox"
                     className="dark-mode-input"
-                    checked={darkMode}
-                    onChange={onDarkModeChange}
+                    id="color_mode2"
+                    checked={"darkMode"}
+                    onChange={"handleDarkModeChange"}
                   />
                   <span className="dark-mode-slider"></span>
                 </label>
@@ -118,7 +121,7 @@ function Header({
             </div>
             <div className="profile-menu">
               <h3>{adminName}</h3>
-              {!isPersistentLoggedIn ? (
+              {!isLoggedIn ? (
                 <ul className="login">
                   <li className="profile-li">
                     <Link to="/dash/login">
@@ -163,7 +166,7 @@ function Header({
               name="color_mode"
               id="color_mode"
               value="1"
-              checked={darkMode}
+              checked={"darkMode"}
             />
             <label
               htmlFor="color_mode"
@@ -185,13 +188,5 @@ function Header({
     </header>
   );
 }
-
-// Add prop type validation
-Header.propTypes = {
-  darkMode: PropTypes.bool.isRequired,
-  onDarkModeChange: PropTypes.func.isRequired,
-  adminName: PropTypes.string.isRequired, // Validate adminName as a required string
-  isPersistentLoggedIn: PropTypes.bool.isRequired, // Validate isPersistentLoggedIn as a required boolean
-};
 
 export default Header;
